@@ -22,11 +22,11 @@
 
     <q-drawer
       class="bg-primary"
-      width="250" 
+      :width="250" 
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      breakpoint="768"
+      :breakpoint="768"
     >
       <q-list>
         <q-item-label header class="text-white"> Navigation </q-item-label>
