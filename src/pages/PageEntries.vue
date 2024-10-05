@@ -3,10 +3,17 @@
     <div class="q-pa-xs">
       <q-list separator bordered class="flex-center">
         <q-item v-for="entry in entries" :key="entry.id">
-          <q-item-section :class="useAmountColor(entry.amount)">
+          <q-item-section
+            :class="useAmountColor(entry.amount)"
+            class="text-weight-bold"
+          >
             {{ entry.name }}
           </q-item-section>
-          <q-item-section side :class="useAmountColor(entry.amount)">
+          <q-item-section
+            side
+            :class="useAmountColor(entry.amount)"
+            class="text-weight-bold"
+          >
             {{ useCurrencify(entry.amount) }}
           </q-item-section>
         </q-item>
@@ -29,12 +36,12 @@ const entries = ref([
   {
     id: 2,
     name: "Rent",
-    amount: -680.88,
+    amount: 680.88,
   },
   {
     id: 3,
     name: "Parking",
-    amount: 250.0,
+    amount: -50.0,
   },
   {
     id: 4,
