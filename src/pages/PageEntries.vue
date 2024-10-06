@@ -40,6 +40,7 @@
           item-aligned
           v-model="newEntry.name"
           dense
+          ref="nameRef"
         />
       </div>
       <div class="col">
@@ -100,7 +101,7 @@ const entries = ref([
     amount: 0,
   },
 ]);
-
+const nameRef = ref(null);
 const newEntry = reactive({
   name: "",
   amount: null,
@@ -118,5 +119,6 @@ const addEntry = () => {
   });
   //Reseting the form inputs
   (newEntry.name = ""), (newEntry.amount = null);
+  nameRef.value.select();
 };
 </script>
