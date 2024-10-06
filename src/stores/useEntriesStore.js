@@ -6,22 +6,22 @@ export const useEntriesStore = defineStore("entries", () => {
   const entries = ref([
     {
       id: 1,
-      name: "Salary",
+      name: "Salary-store",
       amount: 1700.99,
     },
     {
       id: 2,
-      name: "Rent",
+      name: "Rent-store",
       amount: 680.88,
     },
     {
       id: 3,
-      name: "Parking",
+      name: "Parking-store",
       amount: -50.0,
     },
     {
       id: 4,
-      name: "Facture STEG",
+      name: "Facture STEG -store",
       amount: -22,
     },
   ]);
@@ -29,7 +29,7 @@ export const useEntriesStore = defineStore("entries", () => {
   // Actions
   const addEntry = (object) => {
     // Ensure the object has an id, name, and amount before pushing it to entries
-    if (object.id && object.name && typeof object.amount === 'number') {
+    if (object.id && object.name && typeof object.amount === "number") {
       entries.value.push(object);
     } else {
       console.error("Invalid entry object:", object);

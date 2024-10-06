@@ -22,7 +22,7 @@
 
     <q-drawer
       class="bg-primary"
-      :width="250" 
+      :width="250"
       v-model="leftDrawerOpen"
       show-if-above
       bordered
@@ -59,6 +59,11 @@ const navLinks = [
     title: "Settings",
     icon: "settings",
     link: "/settings",
+  },
+  {
+    title: "Entries with the store",
+    icon: "savings",
+    link: "/entries-pinia",
   },
 ];
 

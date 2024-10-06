@@ -4,7 +4,11 @@ const routes = [
     component: () => import("layouts/MainLayout.vue"),
     children: [
       { path: "", component: () => import("pages/PageEntries.vue") },
-      { path: "settings", component: () => import("pages/PageSettings.vue")},
+      {
+        path: "entries-pinia",
+        component: () => import("pages/PageEntriesStore.vue"),
+      },
+      { path: "settings", component: () => import("pages/PageSettings.vue") },
     ],
   },
 
