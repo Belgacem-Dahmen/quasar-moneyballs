@@ -2,24 +2,37 @@
   <q-page>
     <div class="q-pa-xs">
       <q-list separator bordered class="flex-center">
-        <q-item v-for="entry in entries" :key="entry.id">
-          <q-item-section
-            :class="useAmountColor(entry.amount)"
-            class="text-weight-bold"
-          >
-            {{ entry.name }}
-          </q-item-section>
-          <q-item-section
-            side
-            :class="useAmountColor(entry.amount)"
-            class="text-weight-bold"
-          >
-            {{ useCurrencify(entry.amount) }}
-          </q-item-section>
-        </q-item>
+        <q-slide-item
+          v-for="entry in entries"
+          :key="entry.id"
+          @right="deleteEntry(entry.id)"
+          right-color="negative"
+        >
+          <template v-slot:right>
+            <div class="row items-center">
+              Delete <q-icon right name="delete" />
+            </div>
+          </template>
+          <q-item>
+            <q-item-section
+              :class="useAmountColor(entry.amount)"
+              class="text-weight-bold"
+            >
+              {{ entry.name }}
+            </q-item-section>
+            <q-item-section
+              side
+              :class="useAmountColor(entry.amount)"
+              class="text-weight-bold"
+            >
+              {{ useCurrencify(entry.amount) }}
+            </q-item-section>
+          </q-item>
+        </q-slide-item>
       </q-list>
     </div>
   </q-page>
+
   <q-footer class="bg-transparent">
     <div class="row q-px-md q-py-sm shadow-up-3">
       <div class="col text-grey-7 text-h6">Balance</div>
@@ -27,6 +40,7 @@
         {{ useCurrencify(balance) }}
       </div>
     </div>
+
     <q-form
       class="row q-col-sm q-colgutter-sm flex-center bg-primary"
       @submit.prevent="addEntry"
@@ -43,6 +57,7 @@
           ref="nameRef"
         />
       </div>
+
       <div class="col">
         <q-input
           input-class="text-right"
@@ -55,23 +70,22 @@
           type="number"
           step="0.01"
           dense
-          :value="newEntry.name"
         />
       </div>
+
       <div class="col col-auto">
-        Add
         <q-btn
           round
           color="secondary"
           icon="add"
           class="q-mr-sm"
           type="submit"
-          :value="newEntry.amount"
         />
       </div>
     </q-form>
   </q-footer>
 </template>
+
 
 <script setup>
 /** imports */
@@ -120,5 +134,9 @@ const addEntry = () => {
   //Reseting the form inputs
   (newEntry.name = ""), (newEntry.amount = null);
   nameRef.value.select();
+};
+
+const deleteEntry = (id) => {
+  console.log(id);
 };
 </script>
