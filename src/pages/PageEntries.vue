@@ -1,12 +1,13 @@
 <template>
-  <q-page>
+  <q-page v-if="entries.length > 0">
     <div class="q-pa-xs">
       <q-list separator bordered class="flex-center">
         <q-slide-item
           v-for="entry in entries"
           :key="entry.id"
-          @right="deleteEntry(entry.id)"
+          @right="(details) => deleteEntry(entry.id, details)"
           right-color="negative"
+          ref="slideItems"
         >
           <template v-slot:right>
             <div class="row items-center">
@@ -32,7 +33,11 @@
       </q-list>
     </div>
   </q-page>
-
+  <q-page v-else>
+    <div class="q-pa-md text-negative text-h6">
+      please add a new entry down below
+    </div>
+  </q-page>
   <q-footer class="bg-transparent">
     <div class="row q-px-md q-py-sm shadow-up-3">
       <div class="col text-grey-7 text-h6">Balance</div>
@@ -86,13 +91,13 @@
   </q-footer>
 </template>
 
-
 <script setup>
 /** imports */
 import { ref, computed, reactive } from "vue";
 import { useCurrencify } from "src/use/useCurrencify";
 import { useAmountColor } from "src/use/useAmountColor";
-import { useId } from "quasar";
+import { useId, useQuasar } from "quasar";
+
 const entries = ref([
   {
     id: 1,
@@ -111,11 +116,12 @@ const entries = ref([
   },
   {
     id: 4,
-    name: "null",
-    amount: 0,
+    name: "Facture STEG",
+    amount: -22,
   },
 ]);
 const nameRef = ref(null);
+const slideRef = ref(null);
 const newEntry = reactive({
   name: "",
   amount: null,
@@ -135,8 +141,41 @@ const addEntry = () => {
   (newEntry.name = ""), (newEntry.amount = null);
   nameRef.value.select();
 };
+const $q = useQuasar();
+const slideItems = ref([]);
+
+function resetAllSlideItems() {
+  slideItems.value.forEach((slideItem) => {
+    if (slideItem) {
+      slideItem.reset(); // Reset each item
+    }
+  });
+}
 
 const deleteEntry = (id) => {
-  console.log(id);
+  $q.dialog({
+    title: "Supprimer",
+    message: "Voulez vous vraiment supprimer cette entrée ?",
+    cancel: true,
+    persistent: true,
+    ok: {
+      label: "Delete",
+      color: "negative",
+      noCaps: true,
+    },
+    cancel: {
+      label: "Annuler",
+
+      noCaps: true,
+    },
+  })
+    .onOk(() => {
+      entries.value = entries.value.filter((entry) => {
+        return entry.id != id;
+      });
+    })
+    .onCancel(() => {
+      resetAllSlideItems();
+    });
 };
 </script>
