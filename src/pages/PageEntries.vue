@@ -20,6 +20,41 @@
       </q-list>
     </div>
   </q-page>
+  <q-footer class="bg-transparent">
+    <div class="row  q-px-md q-py-sm shadow-up-3">
+      <div class="col text-grey-7 text-h6">Balance</div>
+      <div class="col text-grey-7 text-h6 text-right">+3.9999</div>
+    </div>
+    <div class="row q-col-sm q-colgutter-sm flex-center bg-primary">
+      <div class="col">
+        <q-input
+          outlined
+          placeholder="Name"
+          color="white"
+          bg-color="white"
+          item-aligned
+          dense
+        />
+      </div>
+      <div class="col">
+        <q-input
+          input-class="text-right"
+          outlined
+          placeholder="Amount"
+          color="white"
+          bg-color="white"
+          item-aligned
+          type="number"
+          step="0.01"
+          dense
+        />
+      </div>
+      <div class="col col-auto">
+        Add
+        <q-btn round color="secondary" icon="add" class="q-mr-sm" />
+      </div>
+    </div>
+  </q-footer>
 </template>
 
 <script setup>
