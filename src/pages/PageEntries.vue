@@ -21,9 +21,14 @@
     </div>
   </q-page>
   <q-footer class="bg-transparent">
-    <div class="row  q-px-md q-py-sm shadow-up-3">
+    <div class="row q-px-md q-py-sm shadow-up-3">
       <div class="col text-grey-7 text-h6">Balance</div>
-      <div class="col text-grey-7 text-h6 text-right">+3.9999</div>
+      <div
+        class="col  text-h6 text-right"
+        :class="useAmountColor(balance)"
+      >
+        {{ useCurrencify(balance) }}
+      </div>
     </div>
     <div class="row q-col-sm q-colgutter-sm flex-center bg-primary">
       <div class="col">
@@ -59,7 +64,7 @@
 
 <script setup>
 /** imports */
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useCurrencify } from "src/use/useCurrencify";
 import { useAmountColor } from "src/use/useAmountColor";
 const entries = ref([
@@ -84,4 +89,10 @@ const entries = ref([
     amount: 0,
   },
 ]);
+
+
+const balance = computed(() => {
+  return entries.value.reduce((total, element) => total + element.amount, 0);
+});
+
 </script>
