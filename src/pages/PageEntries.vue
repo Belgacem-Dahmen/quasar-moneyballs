@@ -5,7 +5,7 @@
         <q-slide-item
           v-for="entry in entries"
           :key="entry.id"
-          @right="(details) => deleteEntry(entry.id, details)"
+          @right="(details) => deleteEntry(entry, details)"
           right-color="negative"
           ref="slideItems"
         >
@@ -152,12 +152,18 @@ function resetAllSlideItems() {
   });
 }
 
-const deleteEntry = (id) => {
+const deleteEntry = ({ id, name, amount }) => {
   $q.dialog({
     title: "Supprimer",
-    message: "Voulez vous vraiment supprimer cette entrée ?",
+    message: `Voulez vous vraiment supprimer cette entrée ?
+    <div class="q-mt-md text-weight-bold">
+      ${name} : ${amount}
+      </div>
+
+    `,
     cancel: true,
     persistent: true,
+    html: true,
     ok: {
       label: "Delete",
       color: "negative",
