@@ -179,6 +179,16 @@ const deleteEntry = ({ id, name, amount }) => {
       entries.value = entries.value.filter((entry) => {
         return entry.id != id;
       });
+      $q.notify({
+        color: "positive",
+        textColor: "white",
+        caption: "Entry deleted successfully",
+        icon: "done",
+        iconColor: "white",
+        position: "top-right",
+        progress: true,
+        closeBtn: "X",
+      });
     })
     .onCancel(() => {
       resetAllSlideItems();
