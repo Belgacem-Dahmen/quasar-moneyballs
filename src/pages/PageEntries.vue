@@ -23,14 +23,14 @@
   <q-footer class="bg-transparent">
     <div class="row q-px-md q-py-sm shadow-up-3">
       <div class="col text-grey-7 text-h6">Balance</div>
-      <div
-        class="col  text-h6 text-right"
-        :class="useAmountColor(balance)"
-      >
+      <div class="col text-h6 text-right" :class="useAmountColor(balance)">
         {{ useCurrencify(balance) }}
       </div>
     </div>
-    <div class="row q-col-sm q-colgutter-sm flex-center bg-primary">
+    <q-form
+      class="row q-col-sm q-colgutter-sm flex-center bg-primary"
+      @submit.prevent="addEntry"
+    >
       <div class="col">
         <q-input
           outlined
@@ -38,12 +38,14 @@
           color="white"
           bg-color="white"
           item-aligned
+          v-model="newEntry.name"
           dense
         />
       </div>
       <div class="col">
         <q-input
           input-class="text-right"
+          v-model.number="newEntry.amount"
           outlined
           placeholder="Amount"
           color="white"
@@ -52,21 +54,30 @@
           type="number"
           step="0.01"
           dense
+          :value="newEntry.name"
         />
       </div>
       <div class="col col-auto">
         Add
-        <q-btn round color="secondary" icon="add" class="q-mr-sm" />
+        <q-btn
+          round
+          color="secondary"
+          icon="add"
+          class="q-mr-sm"
+          type="submit"
+          :value="newEntry.amount"
+        />
       </div>
-    </div>
+    </q-form>
   </q-footer>
 </template>
 
 <script setup>
 /** imports */
-import { ref, computed } from "vue";
+import { ref, computed, reactive } from "vue";
 import { useCurrencify } from "src/use/useCurrencify";
 import { useAmountColor } from "src/use/useAmountColor";
+import { useId } from "quasar";
 const entries = ref([
   {
     id: 1,
@@ -90,9 +101,22 @@ const entries = ref([
   },
 ]);
 
+const newEntry = reactive({
+  name: "",
+  amount: null,
+});
 
 const balance = computed(() => {
   return entries.value.reduce((total, element) => total + element.amount, 0);
 });
-
+const id = useId();
+const addEntry = () => {
+  entries.value.push({
+    id: useId().value,
+    name: newEntry.name,
+    amount: newEntry.amount,
+  });
+  //Reseting the form inputs
+  (newEntry.name = ""), (newEntry.amount = null);
+};
 </script>
