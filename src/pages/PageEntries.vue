@@ -156,8 +156,8 @@ const deleteEntry = ({ id, name, amount }) => {
   $q.dialog({
     title: "Supprimer",
     message: `Voulez vous vraiment supprimer cette entrée ?
-    <div class="q-mt-md text-weight-bold">
-      ${name} : ${amount}
+    <div class="q-mt-md text-weight-bold  ${useAmountColor(amount)}">
+      ${name} : $ ${amount}
       </div>
 
     `,
