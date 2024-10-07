@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { useSuccessNotification } from "src/use/useNotify";
+
 import { ref, computed } from "vue";
 
 export const useEntriesStore = defineStore("entries", () => {

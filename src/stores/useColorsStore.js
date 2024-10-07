@@ -1,39 +1,44 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { getValueFromLocalStorage,setValueToLocalStorage } from "src/use/useLocalStorage";
+import {
+  getValueFromLocalStorage,
+  setValueToLocalStorage,
+} from "src/use/useLocalStorage";
 
-export const useColorsStore = defineStore("colors", ()=>{
-      // État
-      const primary = getValueFromLocalStorage("primary") ? ref(getValueFromLocalStorage("primary")) : ref("#00695c");
-      const secondary = getValueFromLocalStorage("secondary") ? ref(getValueFromLocalStorage("secondary")) : ref('#26a69a');
-      const iconColors = ref(primary)
-    const colors = {
-      primary : getValueFromLocalStorage("colors.primary") ? ref(getValueFromLocalStorage("colors.primary")) : ref("00695c"),
-      secondary : getValueFromLocalStorage("colors.secondary") ? ref(getValueFromLocalStorage("colors.secondary")) : ref('#26a69a')
+export const useColorsStore = defineStore("colors", () => {
+  // État
+  const primary = getValueFromLocalStorage("primary")
+    ? ref(getValueFromLocalStorage("primary"))
+    : ref("#414569");
+  const secondary = getValueFromLocalStorage("secondary")
+    ? ref(getValueFromLocalStorage("secondary"))
+    : ref("#26a69a");
+  const iconColors = ref(primary);
+  const colors = {
+    primary: getValueFromLocalStorage("colors.primary")
+      ? ref(getValueFromLocalStorage("colors.primary"))
+      : ref("00695c"),
+    secondary: getValueFromLocalStorage("colors.secondary")
+      ? ref(getValueFromLocalStorage("colors.secondary"))
+      : ref("#26a69a"),
+  };
 
-    }
+  //Actions
+  const updateColors = (object) => {
+    primary.value = object.primary.value;
+    secondary.value = object.secondary.value;
+    setValueToLocalStorage("primary", object.primary.value);
+  };
 
-    //Actions
-      const updateColors = (object) => {
-        primary.value = object.primary.value;
-        secondary.value = object.secondary.value;
-        setValueToLocalStorage("primary", object.primary.value)
-  
-      };
+  const toogleDarkMode = () => {};
 
-      const toogleDarkMode = ()=> {
-        
-      }
-
-      return {
-        primary,
-        secondary,
-        iconColors,
-        updateColors
-      };
-})
-
-
+  return {
+    primary,
+    secondary,
+    iconColors,
+    updateColors,
+  };
+});
 
 /**
  *
