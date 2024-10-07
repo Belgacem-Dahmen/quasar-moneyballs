@@ -1,7 +1,14 @@
 <template>
   <q-layout view="hHh lpR lff">
     <q-header elevated>
-      <q-toolbar>
+      <q-toolbar
+        :class="colorsStore.primary === '#00695c' ? 'bg-primary' : ''"
+        :style="
+          colorsStore.primary !== '#00695c'
+            ? { backgroundColor: colorsStore.primary }
+            : {}
+        "
+      >
         <q-btn
           flat
           dense
@@ -21,10 +28,15 @@
     </q-header>
 
     <q-drawer
-      class="bg-primary"
       :width="250"
-      v-model="leftDrawerOpen"
+      :class="colorsStore.primary === '#00695c' ? 'bg-primary' : ''"
+      :style="
+        colorsStore.primary !== '#00695c'
+          ? { backgroundColor: colorsStore.primary }
+          : {}
+      "
       show-if-above
+      v-model="leftDrawerOpen"
       bordered
       :breakpoint="768"
     >
@@ -44,11 +56,11 @@
 <script setup>
 import { ref } from "vue";
 import NavLink from "components/nav/NavLink.vue";
-
+import { useColorsStore } from "src/stores/useColorsStore";
+const colorsStore = useColorsStore();
 defineOptions({
   name: "MainLayout",
 });
-
 const navLinks = [
   {
     title: "Entries",
