@@ -7,25 +7,31 @@ export const useEntriesStore = defineStore("entries", () => {
   const entries = ref([
     {
       id: 1,
-      name: "Salary-store",
-      amount: 1700.99,
+      name: "Salary",
+      amount: 2700.99,
+
     },
     {
       id: 2,
-      name: "Rent-store",
-      amount: 680.88,
+      name: "Rent",
+      amount: 900,
     },
     {
       id: 3,
-      name: "Parking-store",
+      name: "Parking",
       amount: -50.0,
     },
     {
       id: 4,
-      name: "Facture STEG -store",
+      name: "Facture STEG",
       amount: -22,
     },
   ]);
+// Computed
+const balance = computed(() => {
+  return entries.value.reduce((total, element) => total + element.amount, 0);
+});
+
 
   // Actions
   const addEntry = (object) => {
@@ -47,9 +53,7 @@ export const useEntriesStore = defineStore("entries", () => {
     entries.value = entries.value.filter((entry) => entry.id !== id);
   };
 
-   const balance = computed(() => {
-    return entries.value.reduce((total, element) => total + element.amount, 0);
-  });
+ 
 
   return {
     entries,
