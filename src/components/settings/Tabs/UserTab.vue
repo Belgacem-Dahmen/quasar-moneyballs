@@ -91,6 +91,7 @@ const onSubmit = () => {
       textColor: "white",
       icon: "cloud_done",
       message: "Vos informations ont été mises à jour",
+      position: "top-right",
     });
   }
 };
