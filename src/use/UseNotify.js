@@ -1,23 +1,36 @@
+import { Notify } from 'quasar'
 
-errorNotification = {
+
+const errorNotification = {
     color: "red-5",
     textColor: "white",
     icon: "warning",
-    message: "You need to accept the license and terms first",
+    position : "top-right",
+    progress: true,
   }
-successNotification = {
-    color: "green-4",
+
+
+const successNotification = {
+    color: "positive",
     textColor: "white",
-    icon: "cloud_done",
-    message: "Vos informations ont été mises à jour",
+     icon: "done",
+    iconColor: "white",
+    position : "top-right",
+    progress: false,
   }
   
   
-  export const useSuccessNotification =  () => {
-    $q.notify(successNotification);
-}
+  export const useSuccessNotification = (message) => {
+    Notify.create({
+      ...successNotification,
+      message : message
+    });
+  };
 
 
-export const useErrorNotification =  () => {
-    $q.notify(errorNotification);
-}
+  export const useErrorNotification = (message) => {
+    Notify.create({
+      ...errorNotification,
+      message : message
+    });
+  };

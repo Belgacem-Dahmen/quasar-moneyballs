@@ -1,5 +1,5 @@
 <template>
-  <q-tab-panel name="user" >
+  <q-tab-panel name="user">
     <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
       <q-input
         filled
@@ -58,25 +58,22 @@
       </div>
     </q-form>
   </q-tab-panel>
-  
 </template>
 
 <script setup>
 import { useQuasar } from "quasar";
 import { useSettingsStore } from "src/stores/useSettingsStore";
-
+import {
+  useErrorNotification,
+  useSuccessNotification,
+} from "src/use/useNotify";
 
 const settingsStore = useSettingsStore();
 const $q = useQuasar();
 
 const onSubmit = () => {
   if (!settingsStore.accept) {
-    $q.notify({
-      color: "red-5",
-      textColor: "white",
-      icon: "warning",
-      message: "You need to accept the license and terms first",
-    });
+    useErrorNotification("Vous devez accepter les termes d'utilisation");
   } else {
     settingsStore.updateSettings({
       name: { value: settingsStore.name },
@@ -85,14 +82,7 @@ const onSubmit = () => {
       accept: settingsStore.accept,
       notification: settingsStore.notification,
     });
-
-    $q.notify({
-      color: "green-4",
-      textColor: "white",
-      icon: "cloud_done",
-      message: "Vos informations ont été mises à jour",
-      position: "top-right",
-    });
+    useSuccessNotification("Vos informations ont été mises à jour");
   }
 };
 

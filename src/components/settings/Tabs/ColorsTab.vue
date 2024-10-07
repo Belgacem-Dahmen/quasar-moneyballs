@@ -30,6 +30,7 @@
 <script setup>
 import { useColorsStore } from "src/stores/useColorsStore";
 import { useQuasar } from "quasar";
+import { useSuccessNotification } from "src/use/useNotify";
 
 const colorsStore = useColorsStore();
 const $q = useQuasar();
@@ -39,12 +40,6 @@ const updateColors = () => {
     primary: { value: colorsStore.primary },
     secondary: { value: colorsStore.secondary },
   });
-  $q.notify({
-    color: "green-4",
-    textColor: "white",
-    icon: "cloud_done",
-    message: "Vos Couleurs ont été mises à jour",
-    position: "top-right",
-  });
+  useSuccessNotification("Vos Couleurs ont été mises à jour");
 };
 </script>

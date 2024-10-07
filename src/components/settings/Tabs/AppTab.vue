@@ -21,7 +21,7 @@
         label="Currency"
         stack-label
       >
-      <template v-slot:prepend>
+        <template v-slot:prepend>
           <q-icon name="currency_exchange" />
         </template>
       </q-select>
@@ -42,6 +42,7 @@
 <script setup>
 import { useAppSettingsStore } from "src/stores/useAppStore.js";
 import { useQuasar } from "quasar";
+import { useSuccessNotification } from "src/use/useNotify";
 const appSettings = useAppSettingsStore();
 const $q = useQuasar();
 
@@ -51,13 +52,7 @@ const onSubmit = () => {
     currency: { value: appSettings.currency },
   });
 
-  $q.notify({
-    color: "green-4",
-    textColor: "white",
-    icon: "cloud_done",
-    message: "Vos informations ont été mises à jour",
-    position: "top-right",
-  });
+  useSuccessNotification("Votre configuration a été mise à jour");
 };
 
 const onReset = () => {

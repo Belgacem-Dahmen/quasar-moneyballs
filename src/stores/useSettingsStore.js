@@ -8,6 +8,7 @@ export const useSettingsStore = defineStore("settings", () => {
   const email =ref('');
   const accept = ref(false);
   const notification = ref(false);
+  const avatarUrl= ref("/images/avatar.png");
 
   // Actions
   const updateSettings = (object) => {
@@ -24,6 +25,7 @@ export const useSettingsStore = defineStore("settings", () => {
     email,
     accept,
     notification,
+    avatarUrl,
     updateSettings,
   };
 });

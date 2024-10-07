@@ -107,9 +107,8 @@ import { useEntriesStore } from "src/stores/useEntriesStore";
 import { useColorsStore } from "src/stores/useColorsStore";
 import { computed } from "vue";
 
-
 const entriesStore = useEntriesStore();
-const colorsStore = useColorsStore()
+const colorsStore = useColorsStore();
 const entries = computed(() => entriesStore.entries);
 
 // const entries = entriesStore.entries;
@@ -120,6 +119,10 @@ const newEntry = reactive({
   name: "",
   amount: null,
 });
+import {
+  useErrorNotification,
+  useSuccessNotification,
+} from "src/use/useNotify";
 
 const balance = entriesStore.balance;
 
@@ -168,16 +171,7 @@ const deleteEntry = ({ id, name, amount }) => {
   })
     .onOk(() => {
       entriesStore.deleteEntry(id);
-      $q.notify({
-        color: "positive",
-        textColor: "white",
-        caption: "Entry deleted successfully",
-        icon: "done",
-        iconColor: "white",
-        position: "top-right",
-        progress: true,
-        closeBtn: "X",
-      });
+      useSuccessNotification("Entry deleted successfully");
     })
     .onCancel(() => {
       resetAllSlideItems();
