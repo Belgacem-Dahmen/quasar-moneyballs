@@ -110,9 +110,7 @@ import { computed } from "vue";
 const entriesStore = useEntriesStore();
 const colorsStore = useColorsStore();
 const entries = computed(() => entriesStore.entries);
-
-// const entries = entriesStore.entries;
-// const entries = entriesStore.entries;
+const balance = computed(() => entriesStore.balance);
 const nameRef = ref(null);
 const slideRef = ref(null);
 const newEntry = reactive({
@@ -124,7 +122,7 @@ import {
   useSuccessNotification,
 } from "src/use/useNotify";
 
-const balance = entriesStore.balance;
+// const balance = entriesStore.balance;
 
 const id = useId();
 const addEntry = () => {

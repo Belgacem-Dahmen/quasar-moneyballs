@@ -24,6 +24,15 @@
             MoneyBalls
           </div>
         </q-toolbar-title>
+        <div v-if="userStore.name !== ''">
+          <q-item clickable rounded to="settings">
+            <q-avatar>
+              <img src="/images/avatar.png" />
+
+              <q-badge floating rounded color="red" />
+            </q-avatar>
+          </q-item>
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -54,10 +63,12 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import NavLink from "components/nav/NavLink.vue";
+import { ref } from "vue";
 import { useColorsStore } from "src/stores/useColorsStore";
+import { useUserStore } from "src/stores/useUserStore";
 const colorsStore = useColorsStore();
+const userStore = useUserStore();
 defineOptions({
   name: "MainLayout",
 });

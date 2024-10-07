@@ -3,13 +3,13 @@
     <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
       <q-input
         filled
-        v-model="settingsStore.name"
+        v-model="userStore.name"
         label="Your name *"
         hint="Name and surname"
       />
       <q-input
         filled
-        v-model="settingsStore.email"
+        v-model="userStore.email"
         label="Your email *"
         hint="Email adress"
         type="email"
@@ -18,7 +18,7 @@
       <q-input
         filled
         type="number"
-        v-model="settingsStore.age"
+        v-model="userStore.age"
         label="Your age *"
         lazy-rules
         :rules="[
@@ -30,7 +30,7 @@
       <div class="q-pa-xs">
         <div class="q-gutter-sm">
           <q-checkbox
-            v-model="settingsStore.notification"
+            v-model="userStore.notification"
             color="secondary"
             label="Do you want to receive email notifications ?"
             true-value="yes"
@@ -41,7 +41,7 @@
 
       <div>
         <q-toggle
-          v-model="settingsStore.accept"
+          v-model="userStore.accept"
           label="I accept the license and terms"
         />
       </div>
@@ -62,35 +62,34 @@
 
 <script setup>
 import { useQuasar } from "quasar";
-import { useSettingsStore } from "src/stores/useSettingsStore";
+import { useUserStore } from "src/stores/useUserStore";
 import {
   useErrorNotification,
   useSuccessNotification,
 } from "src/use/useNotify";
 
-const settingsStore = useSettingsStore();
+const userStore = useUserStore();
 const $q = useQuasar();
 
 const onSubmit = () => {
-  if (!settingsStore.accept) {
+  if (!userStore.accept) {
     useErrorNotification("Vous devez accepter les termes d'utilisation");
   } else {
-    settingsStore.updateSettings({
-      name: { value: settingsStore.name },
-      age: { value: settingsStore.age },
-      email: { value: settingsStore.email },
-      accept: settingsStore.accept,
-      notification: settingsStore.notification,
+    userStore.updateSettings({
+      name: { value: userStore.name },
+      age: { value: userStore.age },
+      email: { value: userStore.email },
+      accept: userStore.accept,
+      notification: userStore.notification,
     });
     useSuccessNotification("Vos informations ont été mises à jour");
   }
 };
 
 const onReset = () => {
-  settingsStore.name = "";
-  settingsStore.age = null;
-  settingsStore.email = "";
-  settingsStore.accept = false;
+  userStore.name = "";
+  userStore.age = null;
+  userStore.email = "";
+  userStore.accept = false;
 };
 </script>
-

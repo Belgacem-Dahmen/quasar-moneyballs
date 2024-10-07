@@ -29,12 +29,13 @@ export const useEntriesStore = defineStore("entries", () => {
   ]);
 // Computed
 const balance = computed(() => {
-  return entries.value.reduce((total, element) => total + element.amount, 0);
+    return entries.value.reduce((total, element) => total + element.amount, 0);
 });
 
 
   // Actions
-  const addEntry = (object) => {
+   // Actions
+   const addEntry = (object) => {
    
     if (object.id && object.name && typeof object.amount === "number") {
       entries.value.push(object);
