@@ -6,7 +6,7 @@ export const useColorsStore = defineStore("colors", ()=>{
       // État
       const primary = getValueFromLocalStorage("primary") ? ref(getValueFromLocalStorage("primary")) : ref("#00695c");
       const secondary = getValueFromLocalStorage("secondary") ? ref(getValueFromLocalStorage("secondary")) : ref('#26a69a');
-
+      const iconColors = ref(primary)
     const colors = {
       primary : getValueFromLocalStorage("colors.primary") ? ref(getValueFromLocalStorage("colors.primary")) : ref("00695c"),
       secondary : getValueFromLocalStorage("colors.secondary") ? ref(getValueFromLocalStorage("colors.secondary")) : ref('#26a69a')
@@ -15,18 +15,15 @@ export const useColorsStore = defineStore("colors", ()=>{
 
     //Actions
       const updateColors = (object) => {
-        console.log("updating colors");
-        
         primary.value = object.primary.value;
         secondary.value = object.secondary.value;
-        console.log(" colors updated in state ");
-        console.log("saving to LS ");
         setValueToLocalStorage("primary", object.primary.value)
-        console.log("savied to ls ")
+  
       };
       return {
         primary,
         secondary,
+        iconColors,
         updateColors
       };
 })

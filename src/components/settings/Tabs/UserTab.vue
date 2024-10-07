@@ -1,5 +1,5 @@
 <template>
-  <q-tab-panel name="user">
+  <q-tab-panel name="user" >
     <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
       <q-input
         filled
@@ -64,6 +64,7 @@
 <script setup>
 import { useQuasar } from "quasar";
 import { useSettingsStore } from "src/stores/useSettingsStore";
+
 
 const settingsStore = useSettingsStore();
 const $q = useQuasar();

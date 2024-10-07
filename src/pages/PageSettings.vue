@@ -4,9 +4,24 @@
       <q-splitter v-model="splitterModel" style="height: auto">
         <template v-slot:before>
           <q-tabs v-model="tab" vertical class="text-teal">
-            <q-tab name="user" icon="manage_accounts" label="user" />
-            <q-tab name="app" icon="settings" label="app" />
-            <q-tab name="colors" icon="palette" label="colors" />
+            <q-tab
+              name="user"
+              icon="manage_accounts"
+              label="user"
+              :style="{ color: colorStore.iconColors }"
+            />
+            <q-tab
+              name="app"
+              icon="settings"
+              label="app"
+              :style="{ color: colorStore.iconColors }"
+            />
+            <q-tab
+              :style="{ color: colorStore.iconColors }"
+              name="colors"
+              icon="palette"
+              label="colors"
+            />
           </q-tabs>
         </template>
 
@@ -32,9 +47,12 @@
 
 <script setup>
 import { ref } from "vue";
+
 import UserTab from "src/components/settings/Tabs/UserTab.vue";
 import AppTab from "src/components/settings/Tabs/AppTab.vue";
 import ColorsTab from "src/components/settings/Tabs/ColorsTab.vue";
+import { useColorsStore } from "src/stores/useColorsStore";
+const colorStore = useColorsStore();
 const tab = ref("user");
 const splitterModel = ref(10);
 </script>
