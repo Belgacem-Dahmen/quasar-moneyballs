@@ -29,7 +29,7 @@ export const useEntriesStore = defineStore("entries", () => {
 
   // Actions
   const addEntry = (object) => {
-    // Ensure the object has an id, name, and amount before pushing it to entries
+   
     if (object.id && object.name && typeof object.amount === "number") {
       entries.value.push(object);
     } else {
