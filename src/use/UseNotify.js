@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-import { Notify } from 'quasar'
+import { Notify } from 'quasar';
 
 
 const errorNotification = {
