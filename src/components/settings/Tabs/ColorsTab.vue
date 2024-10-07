@@ -2,6 +2,7 @@
   <q-tab-panel name="colors">
     <div class="row">
       <div class="text-h5">Primary</div>
+      <div class="text-h5">Primary</div>
     </div>
     <!-- <q-form class="q-gutter-md"> -->
     <div class="q-pa-md">

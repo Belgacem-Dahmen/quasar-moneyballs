@@ -82,7 +82,13 @@ const onSubmit = () => {
       accept: settingsStore.accept,
       notification: settingsStore.notification,
     });
-    useSuccessNotification("Vos informations ont été mises à jour");
+
+    $q.notify({
+      color: "green-4",
+      textColor: "white",
+      icon: "cloud_done",
+      message: "Vos informations ont été mises à jour",
+    });
   }
 };
 
