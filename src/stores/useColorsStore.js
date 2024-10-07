@@ -20,6 +20,11 @@ export const useColorsStore = defineStore("colors", ()=>{
         setValueToLocalStorage("primary", object.primary.value)
   
       };
+
+      const toogleDarkMode = ()=> {
+        
+      }
+
       return {
         primary,
         secondary,
