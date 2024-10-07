@@ -36,5 +36,5 @@ import UserTab from "src/components/settings/Tabs/UserTab.vue";
 import AppTab from "src/components/settings/Tabs/AppTab.vue";
 import ColorsTab from "src/components/settings/Tabs/ColorsTab.vue";
 const tab = ref("user");
-const splitterModel = ref(7);
+const splitterModel = ref(10);
 </script>

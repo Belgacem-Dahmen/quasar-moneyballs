@@ -47,7 +47,13 @@
     </div>
 
     <q-form
-      class="row q-col-sm q-colgutter-sm flex-center bg-primary"
+      class="row q-col-sm q-colgutter-sm flex-center"
+      :class="colorsStore.primary === '#00695c' ? 'bg-primary' : ''"
+      :style="
+        colorsStore.primary !== '#00695c'
+          ? { backgroundColor: colorsStore.primary }
+          : {}
+      "
       @submit.prevent="addEntry"
     >
       <div class="col">
@@ -98,10 +104,12 @@ import { useCurrencify } from "src/use/useCurrencify";
 import { useAmountColor } from "src/use/useAmountColor";
 import { useId, useQuasar } from "quasar";
 import { useEntriesStore } from "src/stores/useEntriesStore";
+import { useColorsStore } from "src/stores/useColorsStore";
 import { computed } from "vue";
 
 
 const entriesStore = useEntriesStore();
+const colorsStore = useColorsStore()
 const entries = computed(() => entriesStore.entries);
 
 // const entries = entriesStore.entries;
