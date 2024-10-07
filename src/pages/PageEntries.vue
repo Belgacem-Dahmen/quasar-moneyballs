@@ -122,7 +122,6 @@ import {
   useSuccessNotification,
 } from "src/use/useNotify";
 
-// const balance = entriesStore.balance;
 
 const id = useId();
 const addEntry = () => {

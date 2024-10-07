@@ -1,15 +1,15 @@
 import { defineStore } from "pinia";
-import { ref,computed } from "vue";
+import { useSuccessNotification } from "src/use/useNotify";
+import { ref, computed } from "vue";
 
 export const useEntriesStore = defineStore("entries", () => {
   // État
- 
+
   const entries = ref([
     {
       id: 1,
       name: "Salary",
       amount: 2700.99,
-
     },
     {
       id: 2,
@@ -27,16 +27,14 @@ export const useEntriesStore = defineStore("entries", () => {
       amount: -22,
     },
   ]);
-// Computed
-const balance = computed(() => {
+  // Computed
+  const balance = computed(() => {
     return entries.value.reduce((total, element) => total + element.amount, 0);
-});
-
+  });
 
   // Actions
-   // Actions
-   const addEntry = (object) => {
-   
+  // Actions
+  const addEntry = (object) => {
     if (object.id && object.name && typeof object.amount === "number") {
       entries.value.push(object);
     } else {
@@ -53,8 +51,6 @@ const balance = computed(() => {
     // Use filter to return a new array excluding the entry with the given id
     entries.value = entries.value.filter((entry) => entry.id !== id);
   };
-
- 
 
   return {
     entries,
