@@ -60,11 +60,6 @@ const navLinks = [
     icon: "settings",
     link: "/settings",
   },
-  {
-    title: "Entries with the store",
-    icon: "savings",
-    link: "/entries-pinia",
-  },
 ];
 
 const leftDrawerOpen = ref(false);

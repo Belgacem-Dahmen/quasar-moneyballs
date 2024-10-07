@@ -93,33 +93,19 @@
 
 <script setup>
 /** imports */
-import { ref, computed, reactive } from "vue";
+import { ref, reactive } from "vue";
 import { useCurrencify } from "src/use/useCurrencify";
 import { useAmountColor } from "src/use/useAmountColor";
 import { useId, useQuasar } from "quasar";
+import { useEntriesStore } from "src/stores/useEntriesStore";
+import { computed } from "vue";
 
-const entries = ref([
-  {
-    id: 1,
-    name: "Salary",
-    amount: 1700.99,
-  },
-  {
-    id: 2,
-    name: "Rent",
-    amount: 680.88,
-  },
-  {
-    id: 3,
-    name: "Parking",
-    amount: -50.0,
-  },
-  {
-    id: 4,
-    name: "Facture STEG",
-    amount: -22,
-  },
-]);
+
+const entriesStore = useEntriesStore();
+const entries = computed(() => entriesStore.entries);
+
+// const entries = entriesStore.entries;
+// const entries = entriesStore.entries;
 const nameRef = ref(null);
 const slideRef = ref(null);
 const newEntry = reactive({
@@ -127,20 +113,19 @@ const newEntry = reactive({
   amount: null,
 });
 
-const balance = computed(() => {
-  return entries.value.reduce((total, element) => total + element.amount, 0);
-});
+const balance = entriesStore.balance;
+
 const id = useId();
 const addEntry = () => {
-  entries.value.push({
+  entriesStore.addEntry({
     id: useId().value,
     name: newEntry.name,
     amount: newEntry.amount,
   });
-  //Reseting the form inputs
   (newEntry.name = ""), (newEntry.amount = null);
   nameRef.value.select();
 };
+
 const $q = useQuasar();
 const slideItems = ref([]);
 
@@ -151,7 +136,6 @@ function resetAllSlideItems() {
     }
   });
 }
-
 const deleteEntry = ({ id, name, amount }) => {
   $q.dialog({
     title: "Supprimer",
@@ -171,14 +155,11 @@ const deleteEntry = ({ id, name, amount }) => {
     },
     cancel: {
       label: "Annuler",
-
       noCaps: true,
     },
   })
     .onOk(() => {
-      entries.value = entries.value.filter((entry) => {
-        return entry.id != id;
-      });
+      entriesStore.deleteEntry(id);
       $q.notify({
         color: "positive",
         textColor: "white",

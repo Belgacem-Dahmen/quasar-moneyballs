@@ -1,8 +1,9 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { ref,computed } from "vue";
 
 export const useEntriesStore = defineStore("entries", () => {
   // État
+ 
   const entries = ref([
     {
       id: 1,
@@ -36,20 +37,24 @@ export const useEntriesStore = defineStore("entries", () => {
     }
   };
 
-  const findEntry = (id) => {
-    // Use a simple return statement with the correct comparison
-    return entries.value.find((entry) => entry.id === id);
-  };
+  // const findEntry = (id) => {
+  //   // Use a simple return statement with the correct comparison
+  //   return entries.value.find((entry) => entry.id === id);
+  // };
 
   const deleteEntry = (id) => {
     // Use filter to return a new array excluding the entry with the given id
     entries.value = entries.value.filter((entry) => entry.id !== id);
   };
 
+   const balance = computed(() => {
+    return entries.value.reduce((total, element) => total + element.amount, 0);
+  });
+
   return {
     entries,
+    balance,
     addEntry,
-    findEntry,
     deleteEntry,
   };
 });
