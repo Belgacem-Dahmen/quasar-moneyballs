@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { fetchData } from "src/use/useFetchData";
 
 
 
@@ -7,35 +8,23 @@ import { ref, computed } from "vue";
 export const useEntriesStore = defineStore("entries", () => {
   // État
 
-  const entries = ref([
-    // {
-    //   id: 1,
-    //   name: "Salary",
-    //   amount: 2700.99,
-    // },
-    // {
-    //   id: 2,
-    //   name: "Rent",
-    //   amount: 900,
-    // },
-    // {
-    //   id: 3,
-    //   name: "Parking",
-    //   amount: -50.0,
-    // },
-    // {
-    //   id: 4,
-    //   name: "Facture STEG",
-    //   amount: -22,
-    // },
-  ]);
+  const entries = ref([]);
+  const isLoading = ref(false)
   // Computed
   const balance = computed(() => {
     return entries.value.reduce((total, element) => total + element.amount, 0);
   });
 
   // Actions
-  // Actions
+const loadData = async () => {
+    isLoading.value = true
+    console.log(isLoading.value);
+   entries.value = await fetchData()
+   isLoading.value = false
+   console.log(isLoading.value);
+   return entries
+}
+loadData()
   const addEntry = (object) => {
     if (object.id && object.name && typeof object.amount === "number") {
       entries.value.push(object);
@@ -56,6 +45,7 @@ export const useEntriesStore = defineStore("entries", () => {
 
   return {
     entries,
+    isLoading,
     balance,
     addEntry,
     deleteEntry,

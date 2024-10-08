@@ -1,6 +1,9 @@
 <template>
-  <q-page v-if="entries.length > 0">
+  <q-page>
     <div class="q-pa-xs">
+      <div v-if="entriesStore.isLoading" class="q-pa-sm q-gutter-md row ">
+        <q-spinner-tail :color="colorsStore.primary" size="5rem" />
+      </div>
       <q-list separator bordered class="flex-center">
         <q-slide-item
           v-for="entry in entries"
@@ -33,11 +36,11 @@
       </q-list>
     </div>
   </q-page>
-  <q-page v-else>
+  <!-- <q-page v-else>
     <div class="q-pa-md text-negative text-h6">
       please add a new entry down below
     </div>
-  </q-page>
+  </q-page> -->
   <q-footer class="bg-transparent">
     <div class="row q-px-md q-py-sm shadow-up-3">
       <div class="col text-grey-7 text-h6">Balance</div>
@@ -99,7 +102,7 @@
 
 <script setup>
 /** imports */
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive } from "vue";
 import { useCurrencify } from "src/use/useCurrencify";
 import { useAmountColor } from "src/use/useAmountColor";
 import { useId, useQuasar } from "quasar";
@@ -123,9 +126,6 @@ import {
 } from "src/use/useNotify";
 import { fetchData } from "src/use/useFetchData";
 
-onMounted(() => {
-  fetchData();
-});
 const id = useId();
 const addEntry = () => {
   entriesStore.addEntry({
