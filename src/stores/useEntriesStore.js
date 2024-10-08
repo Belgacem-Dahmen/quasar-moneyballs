@@ -1,31 +1,32 @@
 import { defineStore } from "pinia";
 
+
 import { ref, computed } from "vue";
 
 export const useEntriesStore = defineStore("entries", () => {
   // État
-
+  
   const entries = ref([
-    {
-      id: 1,
-      name: "Salary",
-      amount: 2700.99,
-    },
-    {
-      id: 2,
-      name: "Rent",
-      amount: 900,
-    },
-    {
-      id: 3,
-      name: "Parking",
-      amount: -50.0,
-    },
-    {
-      id: 4,
-      name: "Facture STEG",
-      amount: -22,
-    },
+    // {
+    //   id: 1,
+    //   name: "Salary",
+    //   amount: 2700.99,
+    // },
+    // {
+    //   id: 2,
+    //   name: "Rent",
+    //   amount: 900,
+    // },
+    // {
+    //   id: 3,
+    //   name: "Parking",
+    //   amount: -50.0,
+    // },
+    // {
+    //   id: 4,
+    //   name: "Facture STEG",
+    //   amount: -22,
+    // },
   ]);
   // Computed
   const balance = computed(() => {
