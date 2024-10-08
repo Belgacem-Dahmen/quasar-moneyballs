@@ -55,6 +55,4 @@ import { useColorsStore } from "src/stores/useColorsStore";
 const colorStore = useColorsStore();
 const tab = ref("user");
 const splitterModel = ref(10);
-
-console.log(process.env.FIREBASE_apiKey);
 </script>
