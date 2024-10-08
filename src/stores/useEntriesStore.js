@@ -1,11 +1,12 @@
 import { defineStore } from "pinia";
 
 
+
 import { ref, computed } from "vue";
 
 export const useEntriesStore = defineStore("entries", () => {
   // État
-  
+
   const entries = ref([
     // {
     //   id: 1,

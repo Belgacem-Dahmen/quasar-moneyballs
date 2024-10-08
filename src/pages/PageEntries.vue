@@ -99,7 +99,7 @@
 
 <script setup>
 /** imports */
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { useCurrencify } from "src/use/useCurrencify";
 import { useAmountColor } from "src/use/useAmountColor";
 import { useId, useQuasar } from "quasar";
@@ -121,8 +121,11 @@ import {
   useErrorNotification,
   useSuccessNotification,
 } from "src/use/useNotify";
+import { fetchData } from "src/use/useFetchData";
 
-
+onMounted(() => {
+  fetchData();
+});
 const id = useId();
 const addEntry = () => {
   entriesStore.addEntry({
