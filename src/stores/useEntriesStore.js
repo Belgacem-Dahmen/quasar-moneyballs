@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
-import { fetchData } from "src/use/useFetchData";
+import {  fetchData} from "src/use/useFetchData";
+import { useErrorNotification } from "src/use/useNotify";
 
 
 
@@ -18,10 +19,10 @@ export const useEntriesStore = defineStore("entries", () => {
   // Actions
 const loadData = async () => {
     isLoading.value = true
-    console.log(isLoading.value);
+    
    entries.value = await fetchData()
    isLoading.value = false
-   console.log(isLoading.value);
+   
    return entries
 }
 loadData()
@@ -29,6 +30,7 @@ loadData()
     if (object.id && object.name && typeof object.amount === "number") {
       entries.value.push(object);
     } else {
+      useErrorNotification('Invalid entry object');
       console.error("Invalid entry object:", object);
     }
   };

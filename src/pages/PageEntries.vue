@@ -1,9 +1,7 @@
 <template>
   <q-page>
     <div class="q-pa-xs">
-      <div v-if="entriesStore.isLoading" class="q-pa-sm q-gutter-md row ">
-        <q-spinner-tail :color="colorsStore.primary" size="5rem" />
-      </div>
+      <Loader :isLoading="entriesStore.isLoading" />
       <q-list separator bordered class="flex-center">
         <q-slide-item
           v-for="entry in entries"
@@ -124,7 +122,7 @@ import {
   useErrorNotification,
   useSuccessNotification,
 } from "src/use/useNotify";
-import { fetchData } from "src/use/useFetchData";
+import Loader from "src/components/Ui/Loader.vue";
 
 const id = useId();
 const addEntry = () => {
