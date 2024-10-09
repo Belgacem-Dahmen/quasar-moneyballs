@@ -1,8 +1,6 @@
 import { defineStore } from "pinia";
-import {  fetchData} from "src/use/useFetchData";
-import { useErrorNotification } from "src/use/useNotify";
-
-
+import { fetchData } from "src/use/useFetchData";
+// import { useErrorNotification } from "src/use/useNotify";
 
 import { ref, computed } from "vue";
 
@@ -10,27 +8,30 @@ export const useEntriesStore = defineStore("entries", () => {
   // État
 
   const entries = ref([]);
-  const isLoading = ref(false)
+  const isLoading = ref(false);
   // Computed
   const balance = computed(() => {
     return entries.value.reduce((total, element) => total + element.amount, 0);
   });
 
   // Actions
-const loadData = async () => {
-    isLoading.value = true
-    
-   entries.value = await fetchData()
-   isLoading.value = false
-   
-   return entries
-}
-loadData()
+  const loadData = async () => {
+    isLoading.value = true;
+    entries.value = await fetchData();
+    isLoading.value = false;
+    return entries;
+  };
+
+
+  loadData();
+
+
+  
   const addEntry = (object) => {
     if (object.id && object.name && typeof object.amount === "number") {
       entries.value.push(object);
     } else {
-      useErrorNotification('Invalid entry object');
+      // useErrorNotification('Invalid entry object');
       console.error("Invalid entry object:", object);
     }
   };
