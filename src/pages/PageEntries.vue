@@ -120,7 +120,6 @@ const newEntry = reactive({
 });
 
 import Loader from "src/components/Ui/Loader.vue";
-import { useSuccessNotification } from "src/use/useNotify";
 
 const id = useId();
 const addEntry = () => {
@@ -167,7 +166,6 @@ const deleteEntry = ({ id, name, amount }) => {
   })
     .onOk(() => {
       entriesStore.deleteEntry(id);
-      useSuccessNotification("Entry deleted successfully");
     })
     .onCancel(() => {
       resetAllSlideItems();

@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { fetchData } from "src/use/useFetchData";
-
+import { useSuccessNotification } from "src/use/useNotify";
 
 import { ref, computed } from "vue";
 
@@ -22,24 +22,18 @@ export const useEntriesStore = defineStore("entries", () => {
     return entries;
   };
 
-
   loadData();
 
-
-  
   const addEntry = (object) => {
     if (object.id && object.name && typeof object.amount === "number") {
+      useSuccessNotification("entrée ajoutée avec succés");
       entries.value.push(object);
     } else {
-      
       console.error("Invalid entry object:", object);
     }
   };
 
-
-
   const deleteEntry = (id) => {
-   
     entries.value = entries.value.filter((entry) => entry.id !== id);
   };
 
