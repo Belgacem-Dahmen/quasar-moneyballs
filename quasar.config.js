@@ -39,13 +39,12 @@ module.exports = configure(function (/* ctx */) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
-        target: {
+      target: {
         browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"],
         node: "node20",
-        
       },
 
-      vueRouterMode: "history", 
+      vueRouterMode: "history",
       // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
@@ -55,7 +54,15 @@ module.exports = configure(function (/* ctx */) {
 
       // publicPath: '/',
       // analyze: true,
-      env: require('dotenv').config().parsed,
+      env: {
+        VUE_ROUTER_MODE: "history",
+        FIREBASE_API_KEY: "AIzaSyDKJPby_srCOz0-tS0LhLKi8Nrhr7Hd7O0",
+        FIREBASE_AUTH_DOMAIN: "moneyballs-bybelgacem.firebaseapp.com",
+        FIREBASE_PROJECT_ID: "moneyballs-bybelgacem",
+        FIREBASE_STORAGE_BUCKET: "moneyballs-bybelgacem.appspot.com",
+        FIREBASE_MESSAGING_SENDER_ID: "558997527702",
+        FIREBASE_APP_ID: "1:558997527702:web:14995fe1edc092a85df6b7",
+      },
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
@@ -91,7 +98,7 @@ module.exports = configure(function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ["Dialog", "Notify", 'LocalStorage',],
+      plugins: ["Dialog", "Notify", "LocalStorage"],
     },
 
     // animations: 'all', // --- includes all animations
