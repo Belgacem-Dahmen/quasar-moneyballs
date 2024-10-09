@@ -118,8 +118,9 @@ const newEntry = reactive({
   name: "",
   amount: null,
 });
-import { useSuccessNotification } from "src/use/useNotify";
+
 import Loader from "src/components/Ui/Loader.vue";
+import { useSuccessNotification } from "src/use/useNotify";
 
 const id = useId();
 const addEntry = () => {
