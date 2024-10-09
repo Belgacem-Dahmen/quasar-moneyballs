@@ -113,7 +113,6 @@ const colorsStore = useColorsStore();
 const entries = computed(() => entriesStore.entries);
 const balance = computed(() => entriesStore.balance);
 const nameRef = ref(null);
-const slideRef = ref(null);
 const newEntry = reactive({
   name: "",
   amount: null,
@@ -124,7 +123,7 @@ import Loader from "src/components/Ui/Loader.vue";
 const id = useId();
 const addEntry = () => {
   entriesStore.addEntry({
-    id: useId().value,
+    id: id.value,
     name: newEntry.name,
     amount: newEntry.amount,
   });
@@ -151,7 +150,6 @@ const deleteEntry = ({ id, name, amount }) => {
       </div>
 
     `,
-    cancel: true,
     persistent: true,
     html: true,
     ok: {

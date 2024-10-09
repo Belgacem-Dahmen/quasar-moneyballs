@@ -14,14 +14,6 @@ export const useColorsStore = defineStore("colors", () => {
     ? ref(getValueFromLocalStorage("secondary"))
     : ref("#26a69a");
   const iconColors = ref(primary);
-  const colors = {
-    primary: getValueFromLocalStorage("colors.primary")
-      ? ref(getValueFromLocalStorage("colors.primary"))
-      : ref("00695c"),
-    secondary: getValueFromLocalStorage("colors.secondary")
-      ? ref(getValueFromLocalStorage("colors.secondary"))
-      : ref("#26a69a"),
-  };
 
   //Actions
   const updateColors = (object) => {
@@ -29,8 +21,6 @@ export const useColorsStore = defineStore("colors", () => {
     secondary.value = object.secondary.value;
     setValueToLocalStorage("primary", object.primary.value);
   };
-
-  const toogleDarkMode = () => {};
 
   return {
     primary,
