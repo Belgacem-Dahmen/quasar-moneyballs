@@ -41,10 +41,8 @@
 
 <script setup>
 import { useAppSettingsStore } from "src/stores/useAppStore.js";
-import { useQuasar } from "quasar";
 import { useSuccessNotification } from "src/use/useNotify";
 const appSettings = useAppSettingsStore();
-const $q = useQuasar();
 
 const onSubmit = () => {
   appSettings.updateAppSettings({

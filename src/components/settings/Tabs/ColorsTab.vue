@@ -30,11 +30,10 @@
 
 <script setup>
 import { useColorsStore } from "src/stores/useColorsStore";
-import { useQuasar } from "quasar";
+
 import { useSuccessNotification } from "src/use/useNotify";
 
 const colorsStore = useColorsStore();
-const $q = useQuasar();
 
 const updateColors = () => {
   colorsStore.updateColors({

@@ -61,7 +61,6 @@
 </template>
 
 <script setup>
-import { useQuasar } from "quasar";
 import { useUserStore } from "src/stores/useUserStore";
 import {
   useErrorNotification,
@@ -69,7 +68,6 @@ import {
 } from "src/use/useNotify";
 
 const userStore = useUserStore();
-const $q = useQuasar();
 
 const onSubmit = () => {
   if (!userStore.accept) {
