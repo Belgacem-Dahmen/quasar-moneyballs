@@ -120,7 +120,7 @@ const newEntry = reactive({
 });
 
 import Loader from "src/components/Ui/Loader.vue";
-import { useSuccessNotification } from "src/use/useNotify";
+import { useSuccessNotification } from "src/use/useNotify.js";
 
 const id = useId();
 const addEntry = () => {
@@ -139,7 +139,7 @@ const slideItems = ref([]);
 function resetAllSlideItems() {
   slideItems.value.forEach((slideItem) => {
     if (slideItem) {
-      slideItem.reset(); // Reset each item
+      slideItem.reset(); 
     }
   });
 }
