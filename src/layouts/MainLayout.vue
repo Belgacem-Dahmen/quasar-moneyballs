@@ -63,7 +63,7 @@
 </template>
 
 <script setup>
-import NavLink from "components/nav/NavLink.vue";
+import NavLink from "src/components/Nav/NavLink.vue";
 import { ref } from "vue";
 import { useColorsStore } from "src/stores/useColorsStore";
 import { useUserStore } from "src/stores/useUserStore";
