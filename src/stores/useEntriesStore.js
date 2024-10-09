@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { fetchData } from "src/use/useFetchData";
-// import { useErrorNotification } from "src/use/useNotify";
+
 
 import { ref, computed } from "vue";
 
@@ -31,18 +31,15 @@ export const useEntriesStore = defineStore("entries", () => {
     if (object.id && object.name && typeof object.amount === "number") {
       entries.value.push(object);
     } else {
-      // useErrorNotification('Invalid entry object');
+      
       console.error("Invalid entry object:", object);
     }
   };
 
-  // const findEntry = (id) => {
-  //   // Use a simple return statement with the correct comparison
-  //   return entries.value.find((entry) => entry.id === id);
-  // };
+
 
   const deleteEntry = (id) => {
-    // Use filter to return a new array excluding the entry with the given id
+   
     entries.value = entries.value.filter((entry) => entry.id !== id);
   };
 
