@@ -35,6 +35,7 @@ export const useEntriesStore = defineStore("entries", () => {
 
   const deleteEntry = (id) => {
     entries.value = entries.value.filter((entry) => entry.id !== id);
+    useSuccessNotification("entrée supprimée avec succés");
   };
 
   return {
