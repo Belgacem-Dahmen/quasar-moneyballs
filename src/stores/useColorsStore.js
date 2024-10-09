@@ -30,16 +30,3 @@ export const useColorsStore = defineStore("colors", () => {
   };
 });
 
-/**
- *
- *  $primary: #00695c;
-$secondary: #26a69a;
-$accent: #9c27b0;
-$dark: #1d1d1d;
-$dark-page: #121212;
-$positive: #7eb004;
-$negative: #d73f01;
-$info: #31ccec;
-$warning: #f2c037;
-$white : #FFF
- */
