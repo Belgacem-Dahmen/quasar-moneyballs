@@ -100,7 +100,7 @@
 
 <script setup>
 /** imports */
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { useCurrencify } from "src/use/useCurrencify";
 import { useAmountColor } from "src/use/useAmountColor";
 import { useId, useQuasar } from "quasar";
@@ -120,6 +120,9 @@ const newEntry = reactive({
 
 import Loader from "src/components/Ui/Loader.vue";
 
+onMounted(async () => {
+  await entriesStore.loadData();
+});
 const id = useId();
 const addEntry = () => {
   entriesStore.addEntry({
