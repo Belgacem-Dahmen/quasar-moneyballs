@@ -30,11 +30,11 @@ export const useEntriesStore = defineStore("entries", () => {
   const addEntry = async (object) => {
     if (object.id && object.name && typeof object.amount === "number") {
       await insertData(object);
-      loadData();
       useSuccessNotification("entrée ajoutée avec succés");
     } else {
       console.error("Invalid entry object:", object);
     }
+    await loadData();
   };
 
   const deleteEntry = async (id) => {

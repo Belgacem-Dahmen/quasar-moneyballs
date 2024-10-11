@@ -11,6 +11,7 @@
 const { configure } = require("quasar/wrappers");
 
 module.exports = configure(function (/* ctx */) {
+  require("dotenv").config();
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
@@ -55,13 +56,14 @@ module.exports = configure(function (/* ctx */) {
       // publicPath: '/',
       // analyze: true,
       env: {
-        VUE_ROUTER_MODE: "history",
-        FIREBASE_API_KEY: "AIzaSyDKJPby_srCOz0-tS0LhLKi8Nrhr7Hd7O0",
-        FIREBASE_AUTH_DOMAIN: "moneyballs-bybelgacem.firebaseapp.com",
-        FIREBASE_PROJECT_ID: "moneyballs-bybelgacem",
-        FIREBASE_STORAGE_BUCKET: "moneyballs-bybelgacem.appspot.com",
-        FIREBASE_MESSAGING_SENDER_ID: "558997527702",
-        FIREBASE_APP_ID: "1:558997527702:web:14995fe1edc092a85df6b7",
+        VUE_ROUTER_MODE: process.config.VUE_ROUTER_MODE,
+        FIREBASE_API_KEY: process.config.FIREBASE_API_KEY,
+        FIREBASE_AUTH_DOMAIN: process.config.FIREBASE_AUTH_DOMAIN,
+        FIREBASE_PROJECT_ID: process.config.FIREBASE_PROJECT_ID,
+        FIREBASE_STORAGE_BUCKET: process.config.FIREBASE_STORAGE_BUCKET,
+        FIREBASE_MESSAGING_SENDER_ID:
+          process.config.FIREBASE_MESSAGING_SENDER_ID,
+        FIREBASE_APP_ID: process.config.FIREBASE_APP_ID,
       },
       // rawDefine: {}
       // ignorePublicFolder: true,
